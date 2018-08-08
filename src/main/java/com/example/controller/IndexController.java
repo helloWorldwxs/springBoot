@@ -23,7 +23,6 @@ public class IndexController {
     @RequestMapping(value = "/index")
     public String index(){
        String name = "wxs";
-
         Login login = new Login();
         login.setName(name);
         login.setPassWord("123456");
