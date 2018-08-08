@@ -1,0 +1,8 @@
+#dev 开发环境 stg 测试环境 prod 正式环境
+spring:
+  profiles:
+    active: dev
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .html
