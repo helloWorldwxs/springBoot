@@ -1,0 +1,8 @@
+#dev �������� stg ���Ի��� prod ��ʽ����
+spring:
+  profiles:
+    active: dev
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .html
