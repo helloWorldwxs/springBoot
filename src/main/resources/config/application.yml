@@ -2,7 +2,17 @@
 spring:
   profiles:
     active: dev
-  mvc:
-    view:
-      prefix: /templates/
-      suffix: .html
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: utf-8
+    servlet:
+      content-type: text/html
+    cache: false
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**

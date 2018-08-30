@@ -51,7 +51,19 @@ public class LoginService {
         }
         return fal;
     }
-
+    public boolean update(Login login){
+        boolean fal = false;
+        try {
+            short count = (short) (login.getVersion() + (short)1);
+            login.setVersion(count);
+            loginDao.save(login);
+            fal = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("---------Login表添加失败" + System.currentTimeMillis());
+        }
+        return fal;
+    }
     public List<Girl> list() {
         List<Girl> list = girlDao.findAll();
         return list;

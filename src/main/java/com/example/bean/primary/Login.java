@@ -17,8 +17,17 @@ public class Login {
     private String passWord;
     @Column(name = "available")
     private Boolean available;
-    @Column(name ="user_id")
-    private Integer userId;
+    @Column(name ="email")
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public short getVersion() {
         return version;
     }
@@ -62,11 +71,5 @@ public class Login {
         this.available = available;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 }

@@ -117,7 +117,31 @@ public class ResponseWrapper {
         responseWrapper.setMsg(ReturnCode.USERSUCCESS.getMsg());
         return responseWrapper;
     }
-    
+
+    /**
+     * 密码修改成功
+     * @return
+     */
+    public static ResponseWrapper markPasswordUpdateSuccess(){
+        ResponseWrapper responseWrapper = new ResponseWrapper();
+        responseWrapper.setSuccess(true);
+        responseWrapper.setCode(ReturnCode.PASSWORDUPDATESUCCESS.getCode());
+        responseWrapper.setMsg(ReturnCode.PASSWORDUPDATESUCCESS.getMsg());
+        return responseWrapper;
+    }
+
+    /**
+     * 密码修改失败
+     * @return
+     */
+    public static ResponseWrapper markPasswordUpdateError(){
+        ResponseWrapper responseWrapper = new ResponseWrapper();
+        responseWrapper.setSuccess(true);
+        responseWrapper.setCode(ReturnCode.PASSWORDUPDATEERROR.getCode());
+        responseWrapper.setMsg(ReturnCode.PASSWORDUPDATEERROR.getMsg());
+        return responseWrapper;
+    }
+
 	public boolean isSuccess() {
 		return success;
 	}

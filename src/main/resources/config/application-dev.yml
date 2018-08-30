@@ -1,3 +1,6 @@
+jasypt:
+  encryptor:
+    password: 123456
 server:
   port: 8091
 #配置数据源

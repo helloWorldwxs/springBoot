@@ -25,7 +25,7 @@ public class ToolUtil {
         byte bytes[] = str.getBytes();
         String uuid = UUID.nameUUIDFromBytes(bytes).toString();
         // 去掉"-"符号
-        String temp = uuid.substring(0, 8) +str.substring(9, 13) + str.substring(14, 18) + str.substring(19, 23) +str.substring(24);
+        String temp = uuid.replaceAll("-","");
         return temp;
     }
 }

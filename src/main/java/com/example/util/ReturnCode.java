@@ -21,7 +21,9 @@ public enum ReturnCode {
     SYSTEM_ERROR("9999", "系统异常"),
     USERNAMEERRO("0003","用户未注册"),
     PASSWORDERROR("0004","密码错误"),
-	USERSUCCESS("0005","登录成功");
+	USERSUCCESS("0005","登录成功"),
+	PASSWORDUPDATESUCCESS("0006","密码修改成功"),
+	PASSWORDUPDATEERROR("0007","密码修改失败");
 
   
     private String code;  
