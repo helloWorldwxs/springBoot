@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>文章分类管理</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <script th:src="@{/js/jquery-2.1.4.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <div class="form row">
+        <div class="form-horizontal col-md-offset-3" id="login_form">
+            <h3 class="form-title">LOGIN</h3>
+            <div class="col-md-9">
+                <span class="error"></span>
+                <div class="form-group">
+                    <i class="fa fa-user fa-lg"></i>
+                    <input class="form-control required" type="text" placeholder="Username" id="username" name="userName" autofocus="autofocus" maxlength="20"/>
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-lock fa-lg"></i>
+                    <input class="form-control required" type="password" placeholder="Password" id="password" name="password" maxlength="8"/>
+                </div>
+               <div class="form-group">
+                    <label class="checkbox">
+                        <a href="/persion/reset">忘记密码...去找回</a>
+                    </label>
+                </div>
+                <div class="form-group col-md-offset-9">
+                    <button type="submit" class="btn btn-success pull-right" name="submit">登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+        $("button[name='submit']").click(function () {
+            var userName = $("#username").val();
+            var password = $("#password").val();
+            if(!userName){
+                $(".error").html("账户名为空");
+                return false;
+            }else{
+                $(".error").html("");
+            }
+            if(!password){
+                $(".error").html("密码为空");
+                return false;
+            }else{
+                $(".error").html("");
+            }
+            $.ajax({
+                url:"/persion/loginOut",
+                type:"POST",
+                data:{"userName":userName,"password":password},
+                beforeSend:function(){
+                    $("button[name='submit']").text("登录中...");
+                    $("button[name='submit']").attr("disabled",true);
+                },
+                success:function (data) {
+                    $("button[name='submit']").attr("disabled",false);
+                    $("button[name='submit']").text("登录");
+                    console.log(data);
+                    if(data.success==1){
+                        alert(data.msg);
+                    }else{
+                        $(".error").html(data.msg);
+                    }
+                },error:function (e) {
+                    $("button[name='submit']").attr("disabled",false);
+                    $("button[name='submit']").text("登录");
+                }
+            })
+        });
+
+    })
+    
+</script>
+</html>
