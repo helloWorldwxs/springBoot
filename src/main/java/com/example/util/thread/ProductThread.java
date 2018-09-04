@@ -1,16 +1,7 @@
 package com.example.util.thread;
 
-import com.example.bean.second.IntegralOrder;
-import com.example.bean.second.Product;
 import com.example.service.IntegralOrderService;
-import com.example.service.ProductService;
-import com.example.util.DateUtil;
-import com.example.util.LogUtils;
 import com.example.util.SpringContextUtil;
-import org.slf4j.Logger;
-import org.springframework.stereotype.Component;
-
-import java.util.Date;
 
 /**
  * Copyright (C), 2015-2018
@@ -23,11 +14,13 @@ import java.util.Date;
  * 作者姓名           修改时间           版本号              描述
  */
 public class ProductThread implements Runnable{
+/*
 
     private final ProductService productService = (ProductService) SpringContextUtil.getBean("productService");
 
     private final IntegralOrderService integralOrderService = (IntegralOrderService) SpringContextUtil.getBean("integralOrderService");
 
+*/
 
     private Integer type;
     private Integer productId;
@@ -53,7 +46,7 @@ public class ProductThread implements Runnable{
 
     public void placeAnOrder(Integer productId,Integer userId){
         //获取商品库存
-       /*Integer stock = productService.findByStock(productId);*/
+      /* *//*Integer stock = productService.findByStock(productId);*//*
         Product product = productService.findById(productId);
        //当商品库存大于0时，进行下单
        if (product.getStock()>0){
@@ -66,7 +59,7 @@ public class ProductThread implements Runnable{
            Logger log = LogUtils.getBussinessLogger();
            log.info("添加订单成功！"+bool+"时间："+ DateUtil.formatDate(new Date(),"yyyy-MM-dd HH:mm:ss"));
        }
-
+*/
     }
 
 }

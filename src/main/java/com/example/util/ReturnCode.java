@@ -23,7 +23,12 @@ public enum ReturnCode {
     PASSWORDERROR("0004","密码错误"),
 	USERSUCCESS("0005","登录成功"),
 	PASSWORDUPDATESUCCESS("0006","密码修改成功"),
-	PASSWORDUPDATEERROR("0007","密码修改失败");
+	PASSWORDUPDATEERROR("0007","密码修改失败"),
+	DELETESUCCESS("0008","删除数据成功"),
+	DELETEERROR("0009","删除数据失败"),
+	UPDATASUCCESS("0010","修改数据成功"),
+	UPDATAEERROR("0011","修改数据失败");
+
 
   
     private String code;  

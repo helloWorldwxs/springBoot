@@ -66,6 +66,7 @@
                     console.log(data);
                     if(data.success==1){
                         alert(data.msg);
+                        location.href="/admin/index";
                     }else{
                         $(".error").html(data.msg);
                     }

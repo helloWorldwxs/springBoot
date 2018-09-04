@@ -1,8 +1,9 @@
 package com.example.bean.second;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 /**
  * @Auther: Administrator
@@ -13,14 +14,29 @@ import java.util.Date;
 @Entity
 @Table(name = "type_of_article")
 public class TypeOfArticle {
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private Integer id;
+    @Column(name = "type_name")
     private String typeName;
+    @Column(name = "type_count")
     private Integer typeCount;
+    @Column(name = "type_alias")
+    private String typeAlias;
+    @Column(name = "type_desc")
+    private String typeDesc;
+    @Column(name = "create_by")
     private String createBy;
+    @Column(name = "create_at")
     private Date createAt;
+    @Column(name = "change_by")
     private String changeBy;
+    @Column(name = "change_at")
     private Date changeAt;
+    @Column(name = "availabe")
     private Boolean availabe;
+    @Column(name = "version")
     private short version;
 
     public Integer getId() {
@@ -95,18 +111,20 @@ public class TypeOfArticle {
         this.version = version;
     }
 
-    public TypeOfArticle(Integer id, String typeName, Integer typeCount, String createBy, Date createAt, String changeBy, Date changeAt, Boolean availabe, short version) {
-        this.id = id;
-        this.typeName = typeName;
-        this.typeCount = typeCount;
-        this.createBy = createBy;
-        this.createAt = createAt;
-        this.changeBy = changeBy;
-        this.changeAt = changeAt;
-        this.availabe = availabe;
-        this.version = version;
+    public String getTypeDesc() {
+        return typeDesc;
     }
-    public TypeOfArticle() {}
+
+    public void setTypeDesc(String typeDesc) {
+        this.typeDesc = typeDesc;
+    }
+    public String getTypeAlias() {
+        return typeAlias;
+    }
+
+    public void setTypeAlias(String typeAlias) {
+        this.typeAlias = typeAlias;
+    }
 
     @Override
     public String toString() {
@@ -114,6 +132,8 @@ public class TypeOfArticle {
                 "id=" + id +
                 ", typeName='" + typeName + '\'' +
                 ", typeCount=" + typeCount +
+                ", typeAlias=" + typeAlias +
+                ", typeDesc='" + typeDesc + '\'' +
                 ", createBy='" + createBy + '\'' +
                 ", createAt=" + createAt +
                 ", changeBy='" + changeBy + '\'' +
@@ -121,5 +141,20 @@ public class TypeOfArticle {
                 ", availabe=" + availabe +
                 ", version=" + version +
                 '}';
+    }
+
+    public TypeOfArticle() {}
+
+    public TypeOfArticle(String typeName, Integer typeCount, String typeAlias, String typeDesc, String createBy, Date createAt, String changeBy, Date changeAt, Boolean availabe, short version) {
+        this.typeName = typeName;
+        this.typeCount = typeCount;
+        this.typeAlias = typeAlias;
+        this.typeDesc = typeDesc;
+        this.createBy = createBy;
+        this.createAt = createAt;
+        this.changeBy = changeBy;
+        this.changeAt = changeAt;
+        this.availabe = availabe;
+        this.version = version;
     }
 }

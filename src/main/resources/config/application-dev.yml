@@ -2,7 +2,7 @@ jasypt:
   encryptor:
     password: 123456
 server:
-  port: 8091
+  port: 8080
 #配置数据源
 spring:
   datasource:

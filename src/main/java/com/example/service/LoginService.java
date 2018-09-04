@@ -2,21 +2,14 @@ package com.example.service;
 
 import com.example.bean.primary.Login;
 import com.example.bean.second.Girl;
-import com.example.bean.second.IntegralOrder;
-import com.example.bean.second.Product;
 import com.example.dao.primary.LoginDao;
 import com.example.dao.second.GirlDao;
-import com.example.util.DateUtil;
-import com.example.util.LogUtils;
 import com.example.util.PropertyValueConstants;
-import com.example.util.SpringContextUtil;
 import com.example.util.thread.ProductThread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 import java.util.List;
 
 /**

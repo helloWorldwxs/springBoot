@@ -19,9 +19,10 @@ import java.util.List;
 @Repository
 @Transactional
 public interface TypeOfArticleDao extends JpaRepository<TypeOfArticle,Integer> {
-    List<TypeOfArticle> findAll(Sort.Direction desc, String createAt);
+    List<TypeOfArticle> findByAvailabeIsTrue();
 
    /* @Modifying
     @Query(value = "UPDATE TypeOfArticle SET ar.typeName=:typeName where ar.id= :id")
     int update(@Param("typeName")String typeName,@Param("id")Integer id);*/
+   TypeOfArticle findByIdEquals(Integer id);
 }

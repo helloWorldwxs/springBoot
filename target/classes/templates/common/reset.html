@@ -1,131 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <meta charset="utf-8" />
-    <title>北科乐活堂站点管理系统</title>
-    <meta name="author" content="DeathGhost" />
-    <style>
-        canvas {
-            z-index: -1;
-            position: absolute;
-        }
-        .top{
-            width:100%;
-            margin:0 auto;
-            padding:5px 0px;
-        }
-        .top img{
-            width:161px;
-            height:47px;
-        }
-        .container-fluid{
-            width: 100%;
-            overflow: hidden;
-            padding: 77px 0 107px;
-        }
-        .wrap{width:100%;margin:0 auto;}
-        .admin_login {
-            float:right;
-            width: 356px;
-            height: 380px;
-            background:#fcfcfc;
-            border-radius: 5px;
-            margin:0;
-            padding:0;
-            box-shadow:none;
-        }
-        .admin_login dt h3{
-            text-align:center;
-            color:#0696da;
-            font-size:18px;
-            margin:20px auto;
-            font-weight:normal;
-        }
-        .admin_login dd{
-            width:86%;
-            border:1px solid #bfbfbf;
-            height:50px;
-            line-height:50px;
-            margin:24px auto;
-            border-radius:4px;
-            position:relative;
-        }
-        .admin_login dd .login_txtbx{
-            border:none;
-            overflow:hidden;
-            height:50px;
-            line-height:50px;
-            background-color:#fff;
-            padding:0 5%;
-            color:#bfbfbf;
-            font-size:14px;
-            float:right;
-            width:80%;
-        }
-
-        .admin_login dd .checkcode input{
-            color:#bfbfbf;
-            font-size:14px;
-        }
-        .admin_login dd .submit_btn{
-            background-color:#0696da;
-            color:#fff;
-            height:50px;
-            line-height:50px;
-            font-size:16px;
-            width:100%;
-            border:none;
-        }
-        .admin_login dd .submit_btn:hover{
-            background-color:#0696da;
-        }
-        .admin_login dt{text-shadow:none;}
-        .bottom{
-            color:#9d9d9d;
-            font-size:14px;
-            text-align:center;
-            margin:0 auto;
-            width:100%;
-            padding:10px 0px;
-        }
-
-    </style>
+    <meta charset="UTF-8">
+    <title>找回密码</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <script th:src="@{/js/jquery-2.1.4.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<div class="top"><img src="/assets/newImg/logo.png"></div>
-<div class="container-fluid">
-    <div class="wrap">
-        <dl class="admin_login" style="padding-top: 0px;margin-right:6%;">
-            <dt style="padding-top: 0px;">
-                <h3>用户登录</h3>
-            </dt>
-            <form action="/permission/login" method="post" id="userLogin">
-                <dd class="user_icon">
-                    <input type="text" name="name"
-                           placeholder="#if(!$!userName)账号 #else $!userName #end"
-                           class="login_txtbx" name="username" />
-                </dd>
-                <dd class="pwd_icon">
-                    <input type="password"
-                           placeholder="#if(!$!userName)密码#else $!userName #end"
-                           name="password" class="login_txtbx" name="password" />
-                </dd>
-                <dd>
-                    <input type="button" name="keyword" value="登录" class="submit_btn" />
-                </dd>
-            </form>
-        </dl>
+<div class="container">
+    <div class="form row">
+        <div class="form-horizontal col-md-offset-3" id="login_form">
+            <h3 class="form-title">找回密码</h3>
+            <div class="col-md-9">
+                <span class="error"></span>
+                <div class="form-group form-group-lg">
+                    <i class="fa fa-user fa-lg"></i>
+                    <input class="form-control required" type="text" placeholder="Username" id="username" name="userName" autofocus="autofocus" maxlength="20"/>
+                </div>
+                <div class=" form-group form-group-lg">
+                    <i class="fa fa-lock fa-lg"></i>
+                    <input class="form-control required" type="text" placeholder="email" id="email" name="email"/>
+                </div>
+                <div class="form-group col-md-offset-9">
+                    <button type="submit" class="btn btn-success pull-right" name="submit">确定</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div class="bottom"></div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        //粒子背景特效
-        $('body').particleground({
-            dotColor : '#5cbdaa',
-            lineColor : '#5cbdaa'
-        });
-    });
-</script>
 </body>
+<script>
+    $(function () {
+        $("button[name='submit']").click(function () {
+            var userName = $("#username").val();
+            var email = $("#email").val();
+            if(!userName){
+                $(".error").html("账户名为空");
+                return false;
+            }else{
+                $(".error").html("");
+            }
+            if(!email){
+                $(".error").html("邮箱为空");
+                return false;
+            }else{
+                if(!email.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/)) {
+                    $(".error").html("邮箱格式不正确！请重新输入");
+                    return false;
+                }else{
+                    $(".error").html("");
+                }
+            }
+
+            //发送邮箱验证码
+            //alert("已发送邮箱验证码到"+eamil+"中，请注意查阅！");
+            $.ajax({
+                url:"/persion/resets",
+                type:"POST",
+                data:{"userName":userName,"email":email},
+                beforeSend:function(){
+                    $("button[name='submit']").text("确定中...");
+                    $("button[name='submit']").attr("disabled",true);
+                },
+                success:function (data) {
+                    $("button[name='submit']").attr("disabled",false);
+                    $("button[name='submit']").text("确定");
+                    if(data.success==1){
+                        alert(data.msg);
+                        location.href="/persion/toResetPWD?userName="+userName;
+                    }else{
+                        $(".error").html(data.msg);
+                    }
+                },error:function (e) {
+                    $("button[name='submit']").attr("disabled",false);
+                    $("button[name='submit']").text("确定");
+                }
+            })
+        });
+
+    })
+
+</script>
 </html>
