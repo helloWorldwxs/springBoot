@@ -26,15 +26,14 @@ public class Article {
     private String title;
     @Column(name = "content")
     private String content;
-    @Column(name = "keyword")
-    private String keyword;
-    @Column(name = "describe")
-    private String describe;
+    @Column(name = "keywords")
+    private String keywords;
+    @Column(name = "descr")
+    private String descr;
     @Column(name = "available")
     private Boolean available;
-
-
-
+    @Column(name = "catory_id")
+    private Integer catoryId;
     @Column(name = "created_at")
     private Date createdAt;
     @Column(name = "created_by")
@@ -46,10 +45,45 @@ public class Article {
     @Column(name = "version")
     private Integer version;
 
-    public Integer getId() {
-        return id;
+    public Article() {
     }
 
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", keywords='" + keywords + '\'' +
+                ", descr='" + descr + '\'' +
+                ", available=" + available +
+                ", catoryId=" + catoryId +
+                ", createdAt=" + createdAt +
+                ", createdBy='" + createdBy + '\'' +
+                ", changedAt=" + changedAt +
+                ", changedBy='" + changedBy + '\'' +
+                ", version=" + version +
+                '}';
+    }
+
+    public Article(String title, String content, String keywords, String descr, Boolean available, Integer catoryId, Date createdAt, String createdBy, Date changedAt, String changedBy, Integer version) {
+        this.title = title;
+        this.content = content;
+        this.keywords = keywords;
+        this.descr = descr;
+        this.available = available;
+        this.catoryId = catoryId;
+        this.createdAt = createdAt;
+        this.createdBy = createdBy;
+        this.changedAt = changedAt;
+        this.changedBy = changedBy;
+        this.version = version;
+    }
+
+    public Integer getId() {
+
+        return id;
+    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -71,51 +105,53 @@ public class Article {
         this.content = content;
     }
 
-    public String getKeyword() {
-        return keyword;
+    public String getKeywords() {
+        return keywords;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getDescr() {
+        return descr;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setDescr(String descr) {
+        this.descr = descr;
     }
 
     public Boolean getAvailable() {
         return available;
     }
 
-
     public void setAvailable(Boolean available) {
         this.available = available;
     }
 
+    public Integer getCatoryId() {
+        return catoryId;
+    }
+
+    public void setCatoryId(Integer catoryId) {
+        this.catoryId = catoryId;
+    }
 
     public Date getCreatedAt() {
         return createdAt;
     }
 
-
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
 
     public String getCreatedBy() {
         return createdBy;
     }
 
-
     public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy == null ? null : createdBy.trim();
+        this.createdBy = createdBy;
     }
-
 
     public Date getChangedAt() {
         return changedAt;
@@ -129,7 +165,6 @@ public class Article {
         return changedBy;
     }
 
-
     public void setChangedBy(String changedBy) {
         this.changedBy = changedBy;
     }
@@ -138,40 +173,8 @@ public class Article {
         return version;
     }
 
-
     public void setVersion(Integer version) {
         this.version = version;
-    }
-
-    public Article() {}
-
-    public Article(String title, String content, String keyword, String describe, Boolean available, Date createdAt, String createdBy, Date changedAt, String changedBy, Integer version) {
-        this.title = title;
-        this.content = content;
-        this.keyword = keyword;
-        this.describe = describe;
-        this.available = available;
-        this.createdAt = createdAt;
-        this.createdBy = createdBy;
-        this.changedAt = changedAt;
-        this.changedBy = changedBy;
-        this.version = version;
-    }
-    @Override
-    public String toString() {
-        return "Article{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", keyword='" + keyword + '\'' +
-                ", describe='" + describe + '\'' +
-                ", available=" + available +
-                ", createdAt=" + createdAt +
-                ", createdBy='" + createdBy + '\'' +
-                ", changedAt=" + changedAt +
-                ", changedBy='" + changedBy + '\'' +
-                ", version=" + version +
-                '}';
     }
 }
 

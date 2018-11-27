@@ -61,15 +61,19 @@ public class TypeOfArticleCtl {
     }
     @RequestMapping(value = "update")
     @ResponseBody
-    public ModelAndView updataHtml(HttpServletRequest request,TypeOfArticle typeOfArticle,BindingResult bingdingResult,HttpSession session){
+    public ModelAndView updataHtml(HttpServletRequest request,TypeOfArticle type,BindingResult bingdingResult,HttpSession session){
         LoginVO vo = (LoginVO) session.getAttribute(PropertyValueConstants.SESSION_USER);
-        typeOfArticle.setChangeBy(vo.getName());
-        boolean bool = typeOfArticleService.update(typeOfArticle);
+        TypeOfArticle cate = typeOfArticleService.findById(type.getId());
+        cate.setTypeName(type.getTypeName());
+        cate.setTypeDesc(type.getTypeDesc());
+        cate.setTypeAlias(type.getTypeAlias());
+        cate.setChangeBy(vo.getName());
+        boolean bool = typeOfArticleService.update(cate);
         if(bool){
             return new ModelAndView("redirect:/admin/category/list");
         }
         ModelAndView view = new ModelAndView("/admin/typeArticle/update-category");
-        view.addObject("categroy",typeOfArticle);
+        view.addObject("categroy",type);
         return view;
     }
 }

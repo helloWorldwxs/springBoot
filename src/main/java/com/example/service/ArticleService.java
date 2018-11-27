@@ -8,6 +8,7 @@ import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
  * @Date: 2018/9/4 10:10
  * @Description:
  */
+@Service
 public class ArticleService {
     @Autowired
     private ArticleDao articleDao;
@@ -28,7 +30,8 @@ public class ArticleService {
             article.setAvailable(PropertyValueConstants.AVAILABLE);
             article.setVersion(0);
             article.setCreatedAt(new Date());
-            articleDao.save(article);
+            articleDao.saveAndFlush(article);
+            bool = true;
         }catch (Exception e){
             e.printStackTrace();
             String error = "添加文章失败！时间："+DateUtil.getCurrentFormatDatem(new Date())+"内容是："+article.toString();
@@ -71,7 +74,10 @@ public class ArticleService {
     }
     public PageInfo<Article> list(int page,int num){
          PageHelper.startPage(page,num);
-         List<Article> list = articleDao.findByAvailableTrueAndOrderByCreatedAt();
+         List<Article> list = articleDao.findByAvailableTrueOrderByCreatedAt();
          return new PageInfo<Article>(list);
+    }
+    public Article findById(Integer id){
+       return articleDao.findByIdEqualsAndAvailableTrue(id);
     }
 }

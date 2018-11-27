@@ -35,11 +35,6 @@
       <form action="/admin/category/update" th:object="${typeOfArticle}" th:method="post" autocomplete="off">
         <div class="form-group">
           <input type="hidden" name="id" th:value="${categroy.id}" />
-        <!--  <input type="hidden" name="typeCount" th:value="${categroy.typeCount}" />
-          <input type="hidden" name="createBy" th:value="${categroy.createBy}" />
-          <input type="hidden" name="create_at"  th:text="${#dates.format(categroy.createAt,'yyyy-MM-dd HH:mm:ss')}"/>
-          <input type="hidden" name="availabe" th:value="${categroy.availabe}" />
-          <input type="hidden" name="version" th:value="${categroy.version}" />-->
           <label for="category-name">栏目名称</label>
           <input type="text" id="category-name" name="typeName" th:value="${categroy.typeName}" value="前端技术" class="form-control" placeholder="在此处输入栏目名称" required autocomplete="off">
           <span class="prompt-text">这将是它在站点上显示的名字。</span> </div>
